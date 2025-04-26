@@ -1,0 +1,3 @@
+'use strict'; const { Model } = require('sequelize'); module.exports = (sequelize, DataTypes) => { class Message extends Model { static associate(models) { Message.belongsTo(models.ChatRoom, { foreignKey: 'chatRoomId' }); } }
+
+Message.init( { chatRoomId: { type: DataTypes.INTEGER, allowNull: false }, senderId: { type: DataTypes.INTEGER, allowNull: false }, senderRole: { type: DataTypes.ENUM('client', 'advocate'), allowNull: false }, messageText: { type: DataTypes.TEXT }, attachments: { type: DataTypes.JSON, allowNull: true } }, { sequelize, modelName: 'Message' } ); return Message; };
